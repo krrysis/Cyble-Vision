@@ -1,19 +1,20 @@
-import pandas
+import csv
 import requests
-import urllib.request
-import re
 import webbrowser
 
-df = pandas.read_csv('mosl.csv', usecols=[0])
-list2 = [row[0] for row in df.values]
-#print(list2)
-html_url=[]
-for i in range(len(list2)):
-    api_url = list2[i]
-    response = requests.get(api_url)
-    data = response.json()
-    html_url.append(data["html_url"])
-    #print(data["html_url"])
-
-print("list is: \n")
-print(html_url)
+black = 0
+with open('mosl.csv', newline='') as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        url = row[0]
+        response = requests.get(url)
+        json_data = response.json()
+        if 'html_url' in json_data:
+            html_url = json_data['html_url']
+            webbrowser.open_new_tab(html_url)
+            black+=1
+            print(black)
+            
+        else:
+            #print(f"No 'html_url' key found in JSON response for URL: {url}")
+            pass
