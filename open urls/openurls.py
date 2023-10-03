@@ -9,5 +9,6 @@ with open('urls.csv', 'r') as f:
 for url in urls:
     webbrowser.open_new(url[0])
     print(i)
+    print(url)
     i+=1
     time.sleep(2)
