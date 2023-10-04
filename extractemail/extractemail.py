@@ -1,1 +1,20 @@
-Vivek Rai <vivekrai@motilaloswal.com>; Kishor P. Mali <kishor.mali@motilaloswal.com>; Satish Gupta <satish.gupta@motilaloswal.com>; Suraj P <suraj@motilaloswal.com>; Motilal Oswal Securities Ltd. <info@motilaloswal.com>; Mohit Verma <Mohit.Verma@motilaloswal.com>; Aliasgar Shakir <aliasgar.shakir@motilaloswal.com>; Shubham Vinod Singh <shubham@motilaloswal.com>; Dilip Gholkar <dilipg@motilaloswal.com>; Nikunj Sheth <nikunj@motilaloswal.com>; Santosh Galande <santoshg@motilaloswal.com>; Abhijeet Tharali <Abhijit.Tharali@motilaloswal.com>; prem.mehta@motilaloswal.com; Navin Agarwal <navin@motilaloswal.com>; Harsh Joshi <harsh@motilaloswal.com>; Ramnik Chhabra <ramnikc@motilaloswal.com>; Sambhu Sa <sambhunath@motilaloswal.com>; prashanth.motilaloswal@gmail.com; d_motilaloswal@yahoo.com; Tushar Manudhane <Tushar.Manudhane@motilaloswal.com>; Mahadeo Machigar <mahadeo.machigar@motilaloswal.com>; ketan.motilaloswal@gmail.com; rupak.shenoy@motilaloswal.com; Nayana Suvarna <nayana@motilaloswal.com>
+import re
+
+# Define the input and output file paths
+input_file_path = "data.txt"
+output_file_path = "emails.txt"
+
+# Regular expression pattern to match email addresses
+email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+
+# Read the input file and extract email addresses
+with open(input_file_path, "r") as in_file:
+    content = in_file.read()
+    emails = re.findall(email_pattern, content)
+
+# Write extracted email addresses to the output file
+with open(output_file_path, "w") as out_file:
+    for email in emails:
+        out_file.write(email + "\n")
+
+print(f"Email addresses extracted from {input_file_path} and saved to {output_file_path}.")
