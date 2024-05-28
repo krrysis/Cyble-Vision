@@ -1,7 +1,5 @@
 import csv
 import webbrowser
-import time
-import threading
 
 def open_url(url):
     try:
@@ -24,14 +22,10 @@ if __name__ == "__main__":
 
     print(f"Found {len(urls)} URLs in the CSV file.")
 
-    threads = []
     for url in urls:
-        thread = threading.Thread(target=open_url, args=(url[0],))
-        thread.start()
-        threads.append(thread)
-
-    # Wait for all threads to finish
-    for thread in threads:
-        thread.join()
+        if url:
+            open_url(url[0])
+        else:
+            print("Empty URL encountered.")  # Debugging line
 
     print("All URLs opened successfully!")
